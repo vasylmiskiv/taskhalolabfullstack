@@ -1,56 +1,27 @@
-const express = require('express')
-const mongoose = require('mongoose')
+import express from'express'
+import dotenv from 'dotenv'
+import connectDB from './config/db.js'
+import colors from 'colors'
+import goodsRoute from './routes/goodsRoute.js'
+import path from 'path'
 
-const goodsRoutes = require('./routes/goodsRoute.js')
-// import CORS
-let cors = require("cors");
+dotenv.config()
 
-// get dist folder
-//const serveStatic = require('serve-static')
-// import path
-const path = require('path') 
-
-// import connect db;
-const { connectDB } = require('./config/db.js');
-
-
-// import parser for body req
-//const bodyParser = require('body-parser')
-
-// import global env var
-require('dotenv').config();
-
-// import terminal colors
-const colors = require('colors');
-
-// define port
-const PORT = process.env.PORT || 5000
-
-// start connect db
 connectDB()
 
-// init app
-const app = express();
+const app = new express()
 
-// use CORS for server
-//app.use(cors());
+app.use(express.json())
 
-// parse application/x-www-form-urlencoded
-//app.use(bodyParser.urlencoded({ extended: false }))
+app.use('/api/goods', goodsRoute)
 
-// parse application/json parser
-//app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+//static folder
+const __dirname = path.resolve()
 
-//app.get('/.*/', (req, res) => {
-//  res.sendFile(path.join(__dirname, 'dist/index.html'))
-//})
+app.use(express.static(path.join(__dirname, '/frontend/build')))
 
-// connect to routes
-app.use('/api/goods', goodsRoutes)
+app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, 'mern', 'build', 'index.html')))
 
-// start server
-app.listen(PORT, () => {
-  console.log(`Listeing on port ${colors.green(PORT)}...`)
-})
+const PORT = process.env.PORT || 5000
 
+app.listen(PORT, console.log(`Server started! :${PORT}`.yellow.italic))

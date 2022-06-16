@@ -1,14 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-require('dotenv').config();
-const colors = require('colors');
-
-const URI = process.env.MONGO_URI;
+import dotenv from 'dotenv'
+import colors from 'colors';
 
 //connect to db
 const connectDB = async () => {
   try {
-    await mongoose.connect(URI, {
+    await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
     })
     console.log('Connected to MongoDB'.underline.green)
@@ -17,6 +15,4 @@ const connectDB = async () => {
   }
 }
 
-module.exports = {
-  connectDB,
-}
+export default connectDB;

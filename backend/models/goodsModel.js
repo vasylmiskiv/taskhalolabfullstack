@@ -1,8 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-const { Schema } = mongoose;
-
-const goodSchema = new Schema({
+const goodSchema = new mongoose.Schema({
   category: String,
   name: String,
   price: String,
@@ -10,4 +8,4 @@ const goodSchema = new Schema({
 
 const Good = mongoose.model('Good', goodSchema)
 
-module.exports = Good;
+export default Good;

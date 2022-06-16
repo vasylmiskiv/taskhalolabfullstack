@@ -1,13 +1,11 @@
-const Good = require('../models/goodsModel.js')
 
+import  Good  from '../models/goodsModel.js';
 // GET reviews
-async function getGoods(req, res) {
+const getGoods = async (req, res) => {
   await Good.find({}).then((goods) => {
     res.send(goods)
   })
 }
 
-module.exports = {
-  getGoods,
-}
+export default getGoods;
 
