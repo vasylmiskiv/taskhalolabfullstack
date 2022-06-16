@@ -12,12 +12,11 @@ export const Goods = () => {
   const [votedGood, setVotedGood] = useState<Good | undefined>();
 
   useEffect(() => {
-    axios.get('/api/goods')
-      .then(res => {
-        setGoods(res.data);
-        setLoader(false);
-      })
-  }, [])
+    axios.get("/api/goods").then((res) => {
+      setGoods(res.data);
+      setLoader(false);
+    });
+  }, []);
 
   const onBuy = (good: Good) => {
     setVotedGood(good);
