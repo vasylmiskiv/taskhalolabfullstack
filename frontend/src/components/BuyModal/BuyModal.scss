@@ -1,0 +1,131 @@
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__close {
+    position: absolute;
+    top: -11px;
+    right: -11px;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    transition: 0.2s ease-in;
+
+    &:hover {
+      background-color: #e2e2e2;
+    }
+  }
+
+  &-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    width: 380px;
+    height: 536px;
+    padding: 54px 50px 66px 50px;
+    border: 1px solid #888;
+    border-radius: 24px;
+  }
+
+  &__category {
+    font-size: 16px;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+
+  &__name {
+    margin-top: 14px;
+    font-size: 40px;
+  }
+
+  &__price {
+    position: relative;
+    margin-top: 28px;
+    font-size: 60px;
+  }
+
+  &__dollar-sign {
+    position: absolute;
+    font-size: 30px;
+    top: 12px;
+    left: -20px;
+  }
+
+  &__form {
+    margin-top: 20px;
+  }
+
+  &__input {
+    font-size: 16px;
+    margin-top: 8px;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    outline: none;
+    border: 1px solid #e2e2e2;
+    transition: 0.3s ease-in;
+
+    &-error {
+      font-size: 12px;
+      color: red;
+    }
+
+    &-invalid {
+      border: 1px solid #e43f3f;
+    }
+
+    &-valid {
+      border: 1px solid #50daa8;
+    }
+  }
+
+  &__submit {
+    margin-top: 18px;
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: #50daa8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::after {
+      margin-bottom: 3px;
+      opacity: 0;
+      content: "\0279E";
+      transition: transform 0.3s ease-out;
+    }
+
+    &:hover {
+      background-color: #4bcfa0;
+      &::after {
+        opacity: 1;
+        transform: translateX(4px);
+      }
+    }
+  }
+}

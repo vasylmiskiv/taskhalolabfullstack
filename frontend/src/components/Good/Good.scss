@@ -1,0 +1,57 @@
+.good-card {
+  background-color: #fff;
+  padding: 32px;
+  text-transform: uppercase;
+  border-radius: 24px;
+  min-width: 352px;
+
+  &__category {
+    font-size: 24px;
+    opacity: 0.5;
+  }
+
+  &__name {
+    margin-top: 8px;
+    font-size: 40px;
+    text-transform: capitalize;
+  }
+
+  &__dollar-sign {
+    position: absolute;
+    font-size: 30px;
+    top: 12px;
+    left: -20px;
+  }
+
+  &__price {
+    position: relative;
+    margin-top: 33px;
+    margin-left: 20px;
+    font-size: 60px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+  }
+
+  &__buy {
+    cursor: pointer;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: #fff;
+    color: #4BCFA0;
+    outline: none;
+    border: 1px solid #c0c0c0;
+    border-radius: 16px;
+    transition: 0.2s ease-in;
+
+
+    &:hover {
+      background-color: #4BCFA0;
+      color: #fff;
+      border: 1px solid #4BCFA0;
+    }
+  }
+}

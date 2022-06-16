@@ -1,0 +1,39 @@
+.container {
+  max-width: 1600px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.goods {
+  padding: 104px 0;
+
+  &-list {
+    display: flex;
+    gap: 40px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &-item {
+    list-style-type: none;
+  }
+
+  &__buy-cheapest {
+   display: block;
+   margin: 69px auto;
+   padding: 16px 48px;
+   border-radius: 16px;
+   background-color: #50DAA8;
+   border: none;
+   cursor: pointer;
+   font-size: 24px;
+   color: #fff;
+   transition: 0.2s ease-in;
+   
+   &:hover {
+    background-color: #4BCFA0;
+   }
+  }
+}
