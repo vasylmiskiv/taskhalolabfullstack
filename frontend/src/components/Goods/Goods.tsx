@@ -5,32 +5,37 @@ import { BuyModal } from "../BuyModal/BuyModal";
 import { Loader } from "../Loader/Loader";
 import "./Goods.scss";
 
-export const Goods = () => {
+export const Goods: React.FC = () => {
   const [goods, setGoods] = useState<Good[] | any>([]);
   const [loader, setLoader] = useState<boolean>(true);
   const [buyModal, setBuyModal] = useState<boolean>(false);
-  const [votedGood, setVotedGood] = useState<Good | undefined>();
+  const [cheapestGood, setCheapestGood] = useState<Good | any>();
+  const [votedGood, setVotedGood] = useState<Good | any>();
 
-  useEffect(() => {
-    axios.get("/api/goods").then((res) => {
-      setGoods(res.data);
-      setLoader(false);
-    });
-  }, []);
-
-  const onBuy = (good: Good) => {
-    setVotedGood(good);
-    setBuyModal(true);
-  };
-
-  const onBuyCheapest = () => {
+  const findCheapest = (goods: Good[] | any) => {
     let min = goods[0].price;
     for (let good of goods) {
       if (good.price < min) {
         min = good.price;
       }
     }
-    setVotedGood(goods.find((good: Good) => good.price === min));
+
+    setCheapestGood(goods.find((good: Good) => good.price === min));
+  };
+
+  useEffect(() => {
+    axios
+      .get("/api/goods")
+      .then((res) => {
+        setGoods(res.data);
+        findCheapest(res.data);
+        setLoader(false);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  const onBuy = (good: Good) => {
+    setVotedGood(good);
     setBuyModal(true);
   };
 
@@ -52,20 +57,17 @@ export const Goods = () => {
             </ul>
             <button
               className="goods__buy-cheapest"
-              onClick={() => onBuyCheapest()}
+              onClick={() => { setVotedGood(cheapestGood); setBuyModal(true)}}
             >
               Buy cheapest
             </button>
           </div>
         )}
       </div>
-      {buyModal && (
-        <BuyModal
-          votedGood={votedGood}
-          closeModal={onCloseModal}
-          buyModal={buyModal}
-        />
-      )}
+      {buyModal && <BuyModal 
+      votedGood={votedGood} 
+      closeModal={onCloseModal}
+      />}
     </>
   );
 };

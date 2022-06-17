@@ -5,13 +5,11 @@ import { useState } from "react";
 type Props = {
   votedGood: Good | undefined;
   closeModal: () => void;
-  buyModal: boolean;
 };
 
 export const BuyModal: React.FC<Props> = ({
   votedGood,
   closeModal,
-  buyModal,
 }) => {
   const [nameInputError, setNameInputError] = useState<string>("e");
   const [numberInputError, setNumberInputError] = useState<string>("e");
@@ -22,8 +20,6 @@ export const BuyModal: React.FC<Props> = ({
     number: "",
     order: { ...votedGood },
   });
-
-  let modalClass = `modal ${buyModal && `modal__visible`}`;
 
   const inputNameChecker = () => {
     if (newOrder.name === "") {
@@ -79,7 +75,7 @@ export const BuyModal: React.FC<Props> = ({
   };
 
   return (
-    <div id="myModal" className={modalClass}>
+    <div id="myModal" className="modal">
       <div className="modal-content">
         <button className="modal__close" onClick={() => closeModal()}>
           <IoMdClose />
