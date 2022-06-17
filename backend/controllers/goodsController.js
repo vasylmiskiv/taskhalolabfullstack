@@ -1,4 +1,3 @@
-
 import  Good  from '../models/goodsModel.js';
 // GET reviews
 const getGoods = async (req, res) => {
