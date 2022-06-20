@@ -7,10 +7,7 @@ type Props = {
   closeModal: () => void;
 };
 
-export const BuyModal: React.FC<Props> = ({
-  votedGood,
-  closeModal,
-}) => {
+export const BuyModal: React.FC<Props> = ({ votedGood, closeModal }) => {
   const [nameInputError, setNameInputError] = useState<string>("e");
   const [numberInputError, setNumberInputError] = useState<string>("e");
   const [nameClass, setNameClass] = useState<string>("");

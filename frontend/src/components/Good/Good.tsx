@@ -1,9 +1,9 @@
 import "./Good.scss";
 
 type Props = {
-  good: Good,
-  buy: (good: Good) => void,
-}
+  good: Good;
+  buy: (good: Good) => void;
+};
 
 export const Good: React.FC<Props> = ({ good, buy }) => {
   return (

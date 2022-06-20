@@ -7,6 +7,11 @@
 .goods {
   padding: 104px 0;
 
+  &-error {
+    text-align: center;
+    margin-top: 100px;
+  }
+
   &-list {
     display: flex;
     gap: 40px;

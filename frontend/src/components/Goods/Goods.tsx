@@ -11,6 +11,7 @@ export const Goods: React.FC = () => {
   const [buyModal, setBuyModal] = useState<boolean>(false);
   const [cheapestGood, setCheapestGood] = useState<Good | any>();
   const [votedGood, setVotedGood] = useState<Good | any>();
+  const [error, setError] = useState<string>("");
 
   const findCheapest = (goods: Good[] | any) => {
     let min = goods[0].price;
@@ -31,7 +32,10 @@ export const Goods: React.FC = () => {
         findCheapest(res.data);
         setLoader(false);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError("Something went wrong");
+      });
   }, []);
 
   const onBuy = (good: Good) => {
@@ -41,11 +45,16 @@ export const Goods: React.FC = () => {
 
   const onCloseModal = () => setBuyModal(false);
 
+  const onVoteCheapest = () => {
+    setVotedGood(cheapestGood);
+    setBuyModal(true);
+  };
+
   return (
     <>
       <div className="container">
         {loader ? (
-          <Loader />
+          <Loader error={error} />
         ) : (
           <div className="goods">
             <ul className="goods-list">
@@ -57,17 +66,14 @@ export const Goods: React.FC = () => {
             </ul>
             <button
               className="goods__buy-cheapest"
-              onClick={() => { setVotedGood(cheapestGood); setBuyModal(true)}}
+              onClick={() => onVoteCheapest()}
             >
               Buy cheapest
             </button>
           </div>
         )}
       </div>
-      {buyModal && <BuyModal 
-      votedGood={votedGood} 
-      closeModal={onCloseModal}
-      />}
+      {buyModal && <BuyModal votedGood={votedGood} closeModal={onCloseModal} />}
     </>
   );
 };
